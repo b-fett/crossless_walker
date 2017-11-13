@@ -53,11 +53,7 @@ var viewport = {
 
 dots.init(decarts);
 
-var NB = dots.array[0];
-for (var i in dots.array) {
-	if (NB.x > dots.array[i].x)
-		NB = dots.array[i];
-}
+var NB = dots.array.reduce((a, b) => a.x < b.x ? a : b);
 
 for (var i in dots.array) {
 	var x = dots.array[i].NBx = dots.array[i].x - NB.x;
