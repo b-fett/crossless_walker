@@ -55,11 +55,11 @@ dots.init(decarts);
 
 var NB = dots.array.reduce((a, b) => a.x < b.x ? a : b);
 
-for (var i in dots.array) {
-	var x = dots.array[i].NBx = dots.array[i].x - NB.x;
-	var y = dots.array[i].NBy = dots.array[i].y - NB.y;
-	dots.array[i].NBradius = Math.sqrt(x * x + y * y);
-	dots.array[i].NBangle = Math.atan2(y, x);
+for (var i of dots.array) {
+	var x = i.NBx = i.x - NB.x;
+	var y = i.NBy = i.y - NB.y;
+	i.NBradius = Math.sqrt(x * x + y * y);
+	i.NBangle = Math.atan2(y, x);
 }
 dots.array.splice(NB.i, 1);
 
@@ -98,12 +98,12 @@ polyline.setAttribute('stroke', '#000');
 polyline.setAttribute('stroke-width', '1');
 svg.appendChild(polyline);
 
-for (var i in dots.array) {
+for (var i of dots.array) {
 	var circle = document.createElementNS(svg.namespaceURI, 'circle');
-	circle.setAttribute('cx', viewport.getX(dots.array[i].x));
-	circle.setAttribute('cy', viewport.getY(dots.array[i].y));
+	circle.setAttribute('cx', viewport.getX(i.x));
+	circle.setAttribute('cy', viewport.getY(i.y));
 	circle.setAttribute('r', '2.4');
-	circle.setAttribute('fill', dots.array[i] == NB ? '#00ff00':'#ED6E46');
+	circle.setAttribute('fill', i === NB ? '#00ff00' : '#ED6E46');
 	circle.setAttribute('stroke', 'rgba(255,255,255,1)');
 	circle.setAttribute('stroke-width', '1px');
 	svg.appendChild(circle);
