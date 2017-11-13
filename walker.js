@@ -90,14 +90,9 @@ svg.appendChild(yAxis);
 
 
 var polyline = document.createElementNS(svg.namespaceURI, 'polyline');
-polyline.setAttribute('points', (function() {
-	var s = '';
-	for (var i in dots.array) {
-		s += viewport.getX(dots.array[i].x) + ', ' + viewport.getY(dots.array[i].y) + " ";
-	}
-	s += viewport.getX(dots.array[0].x) + ', ' + viewport.getY(dots.array[0].y) + " ";
-	return s;
-})());
+var points = dots.array.reduce((a, e) => a + viewport.getX(e.x) + ', ' + viewport.getY(e.y) + " ", '')
+	+ viewport.getX(dots.array[0].x) + ', ' + viewport.getY(dots.array[0].y) + " ";
+polyline.setAttribute('points', points);
 polyline.setAttribute('fill', 'none');
 polyline.setAttribute('stroke', '#000');
 polyline.setAttribute('stroke-width', '1');
