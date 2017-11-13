@@ -1,10 +1,10 @@
 var decarts = [[210, 170], [190, 160], [30, 150], [80, 140], [120, 140], [150, 110], [120, 120], [120, 100], [90, 90], [70, 70], [160, 70], [130, 50], [50, 30], [150, 20], [140, 90]]
 
 var dots = {
-	count: 10,
-	minX: 10,
+	count: 20,
+	minX: -100,
 	maxX: 100,
-	minY: 10,
+	minY: -100,
 	maxY: 100,
 	rnd: function(min, max) {
 		return Math.round(min + Math.random() * (max - min));
@@ -19,8 +19,7 @@ var dots = {
 					y: decarts[i][1]
 				});
 			}
-		}
-		else {
+		} else {
 			for (var i = 0; i < this.count; i++) {
 				this.array.push({
 					i: i*1,
@@ -51,7 +50,8 @@ var viewport = {
 	}
 }
 
-dots.init(decarts);
+dots.init();
+// dots.init(decarts);
 
 var NB = dots.array.reduce((a, b) => a.x < b.x ? a : b);
 
