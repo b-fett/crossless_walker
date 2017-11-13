@@ -74,37 +74,22 @@ svg.setAttribute('height', viewport.height);
 
 var xAxis = document.createElementNS(svg.namespaceURI, 'polyline');
 xAxis.setAttribute('points', '0, ' + viewport.up + ' ' + (viewport.right - viewport.left) + ', ' + viewport.up );
-xAxis.setAttribute('fill', 'none');
-xAxis.setAttribute('stroke', '#000');
-xAxis.setAttribute('stroke-width', '1');
 svg.appendChild(xAxis);
 
 var yAxis = document.createElementNS(svg.namespaceURI, 'polyline');
 yAxis.setAttribute('points', (-viewport.left) + ', 0 ' + (-viewport.left) + ', ' + (viewport.up - viewport.down));
-yAxis.setAttribute('fill', 'none');
-yAxis.setAttribute('stroke', '#000');
-yAxis.setAttribute('stroke-width', '1');
 svg.appendChild(yAxis);
-
-
-
 
 var polyline = document.createElementNS(svg.namespaceURI, 'polyline');
 var points = dots.array.reduce((a, e) => a + viewport.getX(e.x) + ', ' + viewport.getY(e.y) + " ", '')
 	+ viewport.getX(dots.array[0].x) + ', ' + viewport.getY(dots.array[0].y) + " ";
 polyline.setAttribute('points', points);
-polyline.setAttribute('fill', 'none');
-polyline.setAttribute('stroke', '#000');
-polyline.setAttribute('stroke-width', '1');
 svg.appendChild(polyline);
 
 for (var i of dots.array) {
 	var circle = document.createElementNS(svg.namespaceURI, 'circle');
 	circle.setAttribute('cx', viewport.getX(i.x));
 	circle.setAttribute('cy', viewport.getY(i.y));
-	circle.setAttribute('r', '2.4');
-	circle.setAttribute('fill', i === NB ? '#00ff00' : '#ED6E46');
-	circle.setAttribute('stroke', 'rgba(255,255,255,1)');
-	circle.setAttribute('stroke-width', '1px');
+	i === NB && circle.setAttribute('class', 'NB');
 	svg.appendChild(circle);
 }
