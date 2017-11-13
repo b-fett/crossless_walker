@@ -63,12 +63,7 @@ for (var i in dots.array) {
 }
 dots.array.splice(NB.i, 1);
 
-dots.array.sort(function(dot1, dot2) {
-	if (dot1.NBangle == dot2.NBangle)
-		return dot1.NBradius - dot2.NBradius;
-	else
-		return dot1.NBangle - dot2.NBangle;
-});
+dots.array.sort((dot1, dot2) => dot1.NBangle === dot2.NBangle ? dot1.NBradius - dot2.NBradius : dot1.NBangle - dot2.NBangle);
 
 dots.array.unshift(NB);
 
